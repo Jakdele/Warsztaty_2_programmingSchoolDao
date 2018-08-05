@@ -1,2 +1,2 @@
 # Warsztaty_2_programmingSchoolDao
-Programming school admin system modified to meet DAO specification.
+Programming school admin system modified to meet DAO design pattern.
