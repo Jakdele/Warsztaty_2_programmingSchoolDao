@@ -8,10 +8,12 @@ import pl.coderslab.programmingSchoolDAO.DAO.SolutionDAO;
 import java.util.List;
 import java.util.Scanner;
 
+import static pl.coderslab.programmingSchoolDAO.controller.AdminController.closeApp;
 import static pl.coderslab.programmingSchoolDAO.controller.MainController.getInt;
 
 public class UserPanelController {
     static Scanner scann;
+
     public static void main(String[] args) throws Exception {
         int userID;
         try {
@@ -20,16 +22,16 @@ public class UserPanelController {
             e.printStackTrace();
             throw new Exception("Wrong user id.");
         }
-        if(UserDAO.loadUserById(userID) == null) throw new Exception("Enter valid id.");
+        if (UserDAO.loadUserById(userID) == null) throw new Exception("Enter valid id.");
         scann = new Scanner(System.in);
         userToolsOptions(userID);
     }
 
 
-    public static void userToolsOptions(int userId){
+    public static void userToolsOptions(int userId) {
         while (true) {
-            System.out.println("What would you like to do: \n(1) add a solution)\n(2) view your solutions)\n(0) quit");
-            switch (getInt(scann)){
+            System.out.println("What would you like to do: \n(1) add a solution\n(2) view your solutions\n(0) quit");
+            switch (getInt(scann)) {
                 case 1:
                     addSolution(userId);
                     break;
@@ -37,6 +39,7 @@ public class UserPanelController {
                     viewSolutions(userId);
                     break;
                 case 0:
+                    closeApp();
                     break;
                 default:
                     System.out.println("Incorrect input - try again.");
@@ -46,35 +49,34 @@ public class UserPanelController {
     }
 
 
-    public static void addSolution(int id){
-        try{
-      List<Solution> solutions = SolutionDAO.loadAllNotDone(id);
-        for (Solution solution : solutions) {
-            System.out.println(solution);
-        }
+    public static void addSolution(int id) {
+        try {
+            List<Solution> solutions = SolutionDAO.loadAllNotDone(id);
 
-        if (solutions.isEmpty()){
+            for (Solution solution : solutions) {
+                System.out.println(solution);
+            }
+        } catch (Exception e) {
+            System.out.println("You have no exercises pending");
             userToolsOptions(id);
-        }
-        }catch (Exception e) {
-            e.printStackTrace();
         }
         int taskId = getIntFromUser(Type.SOLUTION_ID);
         String description = getDescription();
-        Solution solution = new Solution(description,taskId,id);
+        Solution solution = new Solution(description, taskId, id);
         try {
             SolutionDAO.saveToDb(solution);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    public static void viewSolutions(int id){
+
+    public static void viewSolutions(int id) {
         try {
             for (Solution solution : SolutionDAO.loadAllByUserID(id)) {
                 System.out.println(solution);
             }
-        }catch (Exception e){
-            e.printStackTrace();
+        } catch (Exception e) {
+            System.out.println("You have no solutions in the database");
         }
     }
 
@@ -92,7 +94,7 @@ public class UserPanelController {
                 System.out.println("Enter your solution id: ");
                 break;
         }
-        while (!scann.hasNextInt()){
+        while (!scann.hasNextInt()) {
             scann.next();
             System.out.println("Wrong input - you have to enter a number");
         }
@@ -101,7 +103,7 @@ public class UserPanelController {
         return id;
     }
 
-    public enum Type{
+    public enum Type {
         USER_ID,
         SOLUTION_ID,
     }

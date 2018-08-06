@@ -1,5 +1,4 @@
 package pl.coderslab.programmingSchoolDAO.controller;
-import pl.coderslab.programmingSchool.user.UserTools;
 
 import java.util.Scanner;
 
@@ -21,7 +20,7 @@ public class MainController {
                         try {
                             System.out.println("Enter your id: ");
                             paramateres[0] = String.valueOf(getInt(scanner));
-                            UserTools.main(paramateres);
+                            UserPanelController.main(paramateres);
                         } catch (Exception e) {
                             System.out.println(e.getMessage());
                         }

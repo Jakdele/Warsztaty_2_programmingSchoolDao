@@ -1,11 +1,6 @@
 package pl.coderslab.programmingSchoolDAO.entity;
 
-import pl.coderslab.programmingSchool.model.DBManager;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 
 public class Exercise {
     private Integer id;

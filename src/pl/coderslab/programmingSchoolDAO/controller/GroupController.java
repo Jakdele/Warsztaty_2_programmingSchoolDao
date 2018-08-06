@@ -1,6 +1,5 @@
 package pl.coderslab.programmingSchoolDAO.controller;
 
-import pl.coderslab.programmingSchool.admin.MainController;
 
 import pl.coderslab.programmingSchoolDAO.DAO.GroupDAO;
 import pl.coderslab.programmingSchoolDAO.entity.Group;
@@ -9,6 +8,7 @@ import pl.coderslab.programmingSchoolDAO.entity.Group;
 import java.util.List;
 
 import static pl.coderslab.programmingSchoolDAO.controller.AdminController.closeApp;
+import static pl.coderslab.programmingSchoolDAO.controller.AdminController.getUserConfirmation;
 import static pl.coderslab.programmingSchoolDAO.controller.MainController.getInt;
 import static pl.coderslab.programmingSchoolDAO.controller.MainController.scanner;
 public class GroupController {
@@ -60,7 +60,7 @@ public class GroupController {
 
     public static void deleteGroup() {
         int id = getID();
-        if (MainController.getUserConfirmation() == true && id != 0)
+        if (getUserConfirmation() == true && id != 0)
             GroupDAO.delete(id);
     }
 

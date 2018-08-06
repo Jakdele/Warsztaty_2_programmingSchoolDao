@@ -1,14 +1,6 @@
 package pl.coderslab.programmingSchoolDAO.entity;
 
 
-import org.mindrot.jbcrypt.BCrypt;
-import pl.coderslab.programmingSchool.model.DBManager;
-
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-
 public class User {
     private Integer id;
     private String username;

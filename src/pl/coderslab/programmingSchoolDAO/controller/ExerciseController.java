@@ -1,7 +1,5 @@
 package pl.coderslab.programmingSchoolDAO.controller;
 
-import pl.coderslab.programmingSchool.admin.MainController;
-
 import pl.coderslab.programmingSchoolDAO.DAO.ExerciseDAO;
 import pl.coderslab.programmingSchoolDAO.entity.Exercise;
 
@@ -61,7 +59,7 @@ public class ExerciseController {
 
     public static void deleteExercise() {
         int id = getID();
-        if (MainController.getUserConfirmation() == true && id != 0)
+        if (AdminController.getUserConfirmation() == true && id != 0)
             ExerciseDAO.delete(id);
     }
 
