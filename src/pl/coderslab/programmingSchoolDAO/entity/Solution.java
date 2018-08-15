@@ -84,13 +84,23 @@ public class Solution {
 
     @Override
     public String toString() {
-        return "Solution " +
-                "id: " + id +
-                " created: " + created +
-                " updated: " + updated +
-                " description: '" + description + '\'' +
-                " exercise_id: " + exercise_id +
-                " users_id: " + users_id;
+        if(description==null || updated ==null){
+            return "Solution " +
+                    "id: " + id +
+                    " created: " + created +
+                    " updated: " + "Hasn't been solved yet" +
+                    " description: '" + "Hasn't been solved yet" +
+                    " exercise_id: " + exercise_id +
+                    " users_id: " + users_id;
+        }else {
+            return "Solution " +
+                    "id: " + id +
+                    " created: " + created +
+                    " updated: " + updated +
+                    " description: '"  +
+                    " exercise_id: " + exercise_id +
+                    " users_id: " + users_id;
+        }
     }
 
 }
